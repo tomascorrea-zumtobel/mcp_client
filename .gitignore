@@ -1,0 +1,14 @@
+# VS Code MCP configuration
+.vscode/mcp.json
+
+# Environment files
+.env
+mcp-client/.env
+
+# Dependencies
+node_modules/
+.venv/
+
+# OS generated files
+.DS_Store
+Thumbs.db
