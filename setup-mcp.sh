@@ -6,17 +6,17 @@
 echo "🔧 Setting up MCP configuration..."
 
 # Check if .env file exists
-if [ ! -f "mcp-client/.env" ]; then
-    echo "❌ Error: mcp-client/.env file not found"
+if [ ! -f ".env" ]; then
+    echo "❌ Error: .env file not found"
     echo "Please create the .env file with your DEEPL_AUTH_KEY first"
     exit 1
 fi
 
 # Read the API key from .env
-DEEPL_KEY=$(grep "DEEPL_AUTH_KEY=" mcp-client/.env | cut -d'=' -f2)
+DEEPL_KEY=$(grep "DEEPL_AUTH_KEY=" .env | cut -d'=' -f2)
 
 if [ -z "$DEEPL_KEY" ]; then
-    echo "❌ Error: DEEPL_AUTH_KEY not found in mcp-client/.env"
+    echo "❌ Error: DEEPL_AUTH_KEY not found in .env"
     exit 1
 fi
 
@@ -40,6 +40,16 @@ cat > .vscode/mcp.json << EOF
     "env": {
       "DEEPL_API_KEY": "$DEEPL_KEY"
     }
+  },
+  "postgres": {
+  "command": "uv",
+  "args": [
+    "run",
+    "postgres-mcp",
+    "--access-mode=unrestricted"
+  ],
+  "env": {
+    "DATABASE_URI":  "$DATABASE_URL"
   }
  }
 }

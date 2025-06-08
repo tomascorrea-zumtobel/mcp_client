@@ -17,6 +17,17 @@
     "env": {
       "DEEPL_API_KEY": "your-deepl-api-key-here"
     }
+  },
+  "postgres": {
+    "command": "uv",
+    "args": [
+      "run",
+      "postgres-mcp",
+      "--access-mode=unrestricted"
+    ],
+    "env": {
+      "DATABASE_URI": "postgresql://user:pass@localhost:port/db_name"
+    }
   }
  }
 }

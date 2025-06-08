@@ -9,6 +9,9 @@ mcp-client/.env
 node_modules/
 .venv/
 
+# Database backups
+backup_german_learning_*.sql
+
 # OS generated files
 .DS_Store
 Thumbs.db
