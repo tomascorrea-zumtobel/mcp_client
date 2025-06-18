@@ -391,11 +391,12 @@ cli = [
 [[package]]
 name = "mcp-client"
 version = "0.1.0"
-source = { virtual = "." }
+source = { editable = "." }
 dependencies = [
     { name = "mcp" },
     { name = "postgres-mcp" },
     { name = "python-dotenv" },
+    { name = "typing-extensions" },
 ]
 
 [package.metadata]
@@ -403,6 +404,7 @@ requires-dist = [
     { name = "mcp", specifier = ">=1.9.3" },
     { name = "postgres-mcp", specifier = ">=0.3.0" },
     { name = "python-dotenv", specifier = ">=1.1.0" },
+    { name = "typing-extensions", specifier = ">=4.0.0" },
 ]
 
 [[package]]
