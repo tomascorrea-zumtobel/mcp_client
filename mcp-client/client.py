@@ -1,1 +1,0 @@
-# Here is going to be the client code for the MCP client.
