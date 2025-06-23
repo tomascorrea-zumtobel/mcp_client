@@ -393,6 +393,7 @@ name = "mcp-client"
 version = "0.1.0"
 source = { editable = "." }
 dependencies = [
+    { name = "aiohttp" },
     { name = "mcp" },
     { name = "postgres-mcp" },
     { name = "python-dotenv" },
@@ -401,6 +402,7 @@ dependencies = [
 
 [package.metadata]
 requires-dist = [
+    { name = "aiohttp", specifier = ">=3.8.0" },
     { name = "mcp", specifier = ">=1.9.3" },
     { name = "postgres-mcp", specifier = ">=0.3.0" },
     { name = "python-dotenv", specifier = ">=1.1.0" },

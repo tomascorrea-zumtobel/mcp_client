@@ -44,9 +44,48 @@ async def main():
             # Run demo
             from client.demo.examples import basic_demo
             await basic_demo()
+        elif command == "define":
+            # Get word definition
+            word = sys.argv[2] if len(sys.argv) > 2 else input("Enter word: ")
+            lang = sys.argv[3] if len(sys.argv) > 3 else "en"
+            from client.language.tools import LanguageTools
+            tools = LanguageTools()
+            result = await tools.get_definition(word, lang)
+            print(f"📖 Definition for '{word}':")
+            if "error" in result:
+                print(f"❌ {result['error']}")
+            else:
+                if result.get("phonetics"):
+                    print(f"🔊 Pronunciation: {', '.join(result['phonetics'])}")
+                for def_item in result.get("definitions", []):
+                    print(f"• {def_item['partOfSpeech']}: {def_item['definition']}")
+                    if def_item.get('example'):
+                        print(f"  Example: {def_item['example']}")
+        elif command == "synonyms":
+            # Get synonyms
+            word = sys.argv[2] if len(sys.argv) > 2 else input("Enter word: ")
+            from client.language.tools import LanguageTools
+            tools = LanguageTools()
+            result = await tools.get_synonyms(word)
+            print(f"🔄 Synonyms for '{word}':")
+            if "error" in result:
+                print(f"❌ {result['error']}")
+            else:
+                print(f"• {', '.join(result['synonyms'])}")
+        elif command == "antonyms":
+            # Get antonyms
+            word = sys.argv[2] if len(sys.argv) > 2 else input("Enter word: ")
+            from client.language.tools import LanguageTools
+            tools = LanguageTools()
+            result = await tools.get_antonyms(word)
+            print(f"↔️ Antonyms for '{word}':")
+            if "error" in result:
+                print(f"❌ {result['error']}")
+            else:
+                print(f"• {', '.join(result['antonyms'])}")
         else:
             print(f"Unknown command: {command}")
-            print("Available commands: status, test, demo")
+            print("Available commands: status, test, demo, define, synonyms, antonyms")
     else:
         print("🚀 MCP Client")
         await quick_status()
